@@ -1,0 +1,56 @@
+{% extends 'inventory/base.html' %}
+
+{% block title %}Home - Pharmacy Management System{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <div class="jumbotron text-center bg-light p-4 rounded shadow-sm">
+            <h1 class="display-4" style="color: #4CAF50;">Welcome to the Pharmacy Management System</h1>
+            <p class="lead">Your comprehensive solution for effective pharmacy management.</p>
+            <hr class="my-4">
+            <p>Manage your inventory, sales, and purchases with ease!</p>
+        </div>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4 rounded shadow-sm">
+            <a class="navbar-brand" href="#">Pharmacy Management</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-primary text-white mx-2" href="{% url 'import_medicine' %}">Import Medicines</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-warning text-white mx-2" href="{% url 'add_purchase' %}">Add Purchase</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-success text-white mx-2" href="{% url 'add_sale' %}">Add Sale</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-info text-white mx-2" href="{% url 'export_to_excel' %}">Export Medicines</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-danger text-white mx-2" href="{% url 'view_inventory' %}">View Inventory</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <footer class="footer bg-light mt-4 py-3 text-center rounded shadow-sm">
+            <div class="container">
+                <span class="text-muted">&copy; 2024 Pharmacy Management System</span>
+            </div>
+        </footer>
+        <footer class="footer bg-light mt-4  text-center rounded shadow-sm">
+            <div class="container">
+                <span class="text-muted"> Tanmay & Rudraksh</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+{% endblock %}

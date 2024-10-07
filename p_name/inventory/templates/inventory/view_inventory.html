@@ -1,0 +1,47 @@
+<!-- inventory/view_inventory.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory</title>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 20px;">
+
+    <h1 style="text-align: center; color: #4CAF50;">Inventory</h1>
+    
+    <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+        <thead style="background-color: #4CAF50; color: white;">
+            <tr>
+                <th style="padding: 12px; border: 1px solid #ddd;">Medicine Name</th>
+                <th style="padding: 12px; border: 1px solid #ddd;">Company</th>
+                <th style="padding: 12px; border: 1px solid #ddd;">Batch Number</th>
+                <th style="padding: 12px; border: 1px solid #ddd;">Quantity</th>
+                <th style="padding: 12px; border: 1px solid #ddd;">Price Per Unit</th>
+                <th style="padding: 12px; border: 1px solid #ddd;">Manufacture Date</th>
+                <th style="padding: 12px; border: 1px solid #ddd;">Expiry Date</th>
+                <th style="padding: 12px; border: 1px solid #ddd;">Salts</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for medicine in medicines %}
+            <tr>
+                <td style="padding: 12px; border: 1px solid #ddd;">{{ medicine.name }}</td>
+                <td style="padding: 12px; border: 1px solid #ddd;">{{ medicine.company_name }}</td>
+                <td style="padding: 12px; border: 1px solid #ddd;">{{ medicine.batch_number }}</td>
+                <td style="padding: 12px; border: 1px solid #ddd;">{{ medicine.quantity }}</td>
+                <td style="padding: 12px; border: 1px solid #ddd;">{{ medicine.price_per_unit }}</td>
+                <td style="padding: 12px; border: 1px solid #ddd;">{{ medicine.manufacture_date }}</td>
+                <td style="padding: 12px; border: 1px solid #ddd;">{{ medicine.expiry_date }}</td>
+                <td style="padding: 12px; border: 1px solid #ddd;">{{ medicine.salts }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8" style="padding: 12px; text-align: center; border: 1px solid #ddd;">No medicines found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>

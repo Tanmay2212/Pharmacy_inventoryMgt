@@ -1,0 +1,70 @@
+{% extends 'inventory/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Add Sale</h2>
+    <form method="POST" action="{% url 'add_sale' %}" class="bg-light p-4 rounded shadow" id="saleForm" onsubmit="showConfirmation(event)">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="medicine">Medicine Name</label>
+            <select class="form-control" id="medicine" name="medicine" required>
+                <option value="">Select Medicine</option>
+                {% for medicine in medicines %}
+                    <option value="{{ medicine.id }}" data-price="{{ medicine.price_per_unit }}">{{ medicine.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="quantity">Quantity Sold</label>
+            <input type="number" class="form-control" id="quantity" name="quantity" required placeholder="Enter quantity sold">
+        </div>
+        <div class="form-group">
+            <label for="sale_date">Sale Date</label>
+            <input type="date" class="form-control" id="sale_date" name="sale_date" required>
+        </div>
+
+        <h3 class="mt-4">Current Inventory</h3>
+        <table class="table table-bordered mt-2">
+            <thead>
+                <tr>
+                    <th>Medicine Name</th>
+                    <th>Quantity Available</th>
+                    <th>Price Per Unit</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for medicine in medicines %}
+                    <tr>
+                        <td>{{ medicine.name }}</td>
+                        <td>{{ medicine.quantity }}</td>
+                        <td>{{ medicine.price_per_unit }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button type="submit" class="btn btn-primary">Add Sale</button>
+        <a href="{% url 'view_inventory' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+<script>
+    function showConfirmation(event) {
+        event.preventDefault(); // Prevent the form from submitting immediately
+
+        // Get the values from the form fields
+        const medicineSelect = document.getElementById('medicine');
+        const medicineName = medicineSelect.options[medicineSelect.selectedIndex].text;
+        const quantity = document.getElementById('quantity').value;
+        const pricePerUnit = medicineSelect.options[medicineSelect.selectedIndex].getAttribute('data-price'); // Get price from data attribute
+        const totalPrice = (quantity * pricePerUnit).toFixed(2); // Calculate total price
+
+        // Create the confirmation message
+        const confirmationMessage = `Medicine: ${medicineName}\nQuantity: ${quantity}\nTotal Price: $${totalPrice}`;
+
+        // Show the confirmation dialog
+        if (confirm(confirmationMessage)) {
+            document.getElementById('saleForm').submit(); // Submit the form if the user confirms
+        }
+    }
+</script>
+{% endblock %}
