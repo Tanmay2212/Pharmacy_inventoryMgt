@@ -1,0 +1,8 @@
+<!-- templates/inventory/import_success.html -->
+{% extends 'inventory/base.html' %}
+
+{% block content %}
+<h2>Import Successful!</h2>
+<p>Your medicines have been successfully imported.</p>
+<a href="{% url 'import_medicine' %}" class="btn btn-primary">Import Another</a>
+{% endblock %}
